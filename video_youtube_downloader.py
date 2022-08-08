@@ -378,13 +378,15 @@ def get_target_path(user_input):
         if vid_id == 'ex':
             main()
             return
-        while not "https://www.youtube.com" in vid_id:
+        while not "https://www.youtube.com" in vid_id and not "https://youtu.be" in vid_id:
             vid_id = input('\t[+] Введите ссылку на видео\n\t[+] Для выхода в меню введите: ex\n\t>>> ')
             if vid_id == 'ex':
                 main()
                 return
         if '&list' in vid_id:
             vid_id = vid_id.split("&")[0].split("=")[-1]
+        elif not "=" in vid_id:
+            vid_id = vid_id.split("/")[-1]
         else:
             vid_id = vid_id.split("=")[-1]
         channel_name = get_channel_name(vid_id)
